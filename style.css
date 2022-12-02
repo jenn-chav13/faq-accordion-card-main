@@ -1,0 +1,98 @@
+:root {
+
+--Very-dark-desaturated-blue: hsl(238, 29%, 16%);
+--Soft-red: hsl(14, 88%, 65%);
+
+--Soft-violet: hsl(273, 75%, 66%);
+--Soft-blue: hsl(240, 73%, 65%);
+
+--Very-dark-grayish-blue: hsl(237, 12%, 33%);
+--Dark-grayish-blue: hsl(240, 6%, 50%);
+--Light-grayish-blue: hsl(240, 5%, 91%);
+
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(var(--Soft-violet), var(--Soft-blue));
+    font-family: 'Kumbh Sans', sans-serif;
+    color: var(--Very-dark-grayish-blue);
+}
+
+input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+input:checked ~ label {
+    color: var(--Very-dark-grayish-blue);
+    font-weight: 700;
+}
+
+input:checked ~ p {
+    max-height: 100vh;
+    padding-bottom: 15px;
+    color: var(--Dark-grayish-blue);
+    transition: all .35s;
+}
+
+input:checked ~ label::after {
+    transform: rotate(-180deg);
+    transition: all .35s;
+}
+
+h1 {
+    color: var(--Very-dark-desaturated-blue);
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.accordion {
+    width: 325px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0 30px 60px 30px;
+}
+
+.accordion-image {
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+
+#illustration {
+    position: absolute;
+    top: -110px;
+}
+
+.accordion-content-tab {
+    border-bottom: 1px solid var(--Light-grayish-blue);
+    overflow: hidden;
+    font-size: 0.819rem;
+}
+
+.accordion-content-tab label {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 15px 0px;
+}
+
+.accordion-content-tab label::after {
+    content: url(./images/icon-arrow-down.svg);
+}
+
+.accordion-content-tab p {
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    transition: all .35s;
+}
