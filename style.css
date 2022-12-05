@@ -22,7 +22,6 @@ body {
 input {
     position: absolute;
     opacity: 0;
-    z-index: -1;
 }
 
 input:checked ~ label {
@@ -130,7 +129,7 @@ main {
 
     .accordion::before {
         content: "";
-        background: url(/images/illustration-box-desktop.svg) no-repeat;
+        background: url(./images/illustration-box-desktop.svg) no-repeat;
         width: 191px;
         height: 184px;
         position: relative;

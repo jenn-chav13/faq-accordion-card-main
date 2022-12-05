@@ -1,94 +1,153 @@
-# Frontend Mentor - FAQ accordion card
+# Frontend Mentor - FAQ accordion card solution
 
-![Design preview for the FAQ accordion card coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [FAQ accordion card challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/faq-accordion-card-XlyjD0Oam). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshots](#screenshots)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to build out this FAQ accordion card and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for the component depending on their device's screen size
 - See hover states for all interactive elements on the page
 - Hide/Show the answer to a question when the question is clicked
-- **Bonus**: Complete the challenge without using JavaScript
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### Screenshots
 
-## Where to find everything
+#### Desktop
+![](./images/screenshots/desktop.png)
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+#### Mobile
+![](./images/screenshots/mobile.png)
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+### Links
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+- Solution URL: [Github](https://github.com/jenn-chav13/faq-accordion-card-main)
+- Live Site URL: [Github Page](https://jenn-chav13.github.io/faq-accordion-card-main/)
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+## My process
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+### Built with
 
-## Building your project
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-first workflow
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+### What I learned
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+This entire project was a learning experience.
+I started working on the mobile version and the first challenge I encountered was placing the image at the top edge of the container.
 
-## Deploying your project
+For this, I learned that I can take an element out of "the box" with `position: absolute` and that I can make sure that this element is still relative to its container by adding `position: relative` to it. 
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+```css
+/** parent container **/
+.accordion-image {
+    position: relative;
+}
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+/** Element I want to position on the edge of the container **/
+#illustration {
+    position: absolute;
+    top: -110px;
+}
+```
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+I also learned how to make collapsible sections by using checkbox items. Turns out you can also style items in relation to their siblings. So if I have the following:
 
-## Create a custom `README.md`
+```html
+<div class="accordion-content-tab">
+          <input type="checkbox" name="checkbox1" id="checkbox1">
+          <label for="checkbox1">How many team members can I invite?</label>
+          <p> You can invite up to 2 additional users on the Free plan. There is no limit on 
+            team members for the Premium plan.
+          </p>
+        </div>
+```
+I can style the `<label>` and `<p>` elements based on their sibling `<input type="checkbox">`'s state by using the `~` symbol in CSS.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+```css
+input:checked ~ label {
+    color: var(--Very-dark-grayish-blue);
+    font-weight: 700;
+}
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+input:checked ~ p {
+    max-height: 100vh;
+    padding-bottom: 15px;
+    color: var(--Dark-grayish-blue);
+    transition: all .35s;
+}
+```
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+I learned to use transitions so that the arrows can rotate when a section is expanded! The `transition` property will take care of it.
 
-## Submitting your solution
+```css
+input:checked ~ label::after {
+    transform: rotate(-180deg);
+    transition: all .35s;
+}
+```
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+I learned to collapse sections by setting their max-height to 0:
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+```css
+.accordion-content-tab p {
+    max-height: 0;
+}
+```
+And then expanding these sections on click by setting up their max-height again! (The transition property will make it look nice when you click on it.)
 
-## Sharing your solution
+```css
+input:checked ~ p {
+    max-height: 100vh;
+    transition: all .35s;
+}
+```
 
-There are multiple places you can share your solution:
+Working on the desktop version, I learned that you can add more than one url per background in an element:
 
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+```css
+background: url(./images/illustration-woman-online-desktop.svg) bottom 80px left -85px no-repeat, url(./images/bg-pattern-desktop.svg) bottom -140px left -575px no-repeat;
+```
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+And I applied what I learned while working on the mobile version and placed the box thingy on the edge of the main container:
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+```css
+.accordion::before {
+        content: "";
+        background: url(./images/illustration-box-desktop.svg) no-repeat;
+        width: 191px;
+        height: 184px;
+        position: relative;
+        top: 205px;
+        left: -365px;
+    }
+```
 
-## Got feedback for us?
+### Useful resources
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+- [Understand ‘+’, ‘>’ and ‘~’ symbols in CSS Selector](https://techbrij.com/css-selector-adjacent-child-sibling)
+- [CSS Position Relative vs Position Absolute](https://kolosek.com/css-position-relative-vs-position-absolute/)
+- [How to Build an Accordion Component With the CSS Checkbox Hack](https://webdesign.tutsplus.com/tutorials/accordion-component-with-css-checkbox-hack--cms-34105)
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
 
-**Have fun building!** 🚀
+## Author
+
+- Frontend Mentor - [@jenn-chav13](hhttps://www.frontendmentor.io/profile/jenn-chav13)
+
