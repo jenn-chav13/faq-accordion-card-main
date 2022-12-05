@@ -54,6 +54,16 @@ main {
     min-height: 100vh;
 }
 
+.attribution {
+    color: var(--Light-grayish-blue);
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: var(--Soft-red);
+}
+
 .accordion {
     width: 325px;
     box-sizing: border-box;
@@ -86,8 +96,13 @@ main {
     margin: 15px 0px;
 }
 
+.accordion-content-tab label:hover {
+    color: var(--Soft-red);
+}
+
 .accordion-content-tab label::after {
     content: url(./images/icon-arrow-down.svg);
+    transition: all .35s;
 }
 
 .accordion-content-tab p {
@@ -95,4 +110,55 @@ main {
     overflow: hidden;
     margin: 0;
     transition: all .35s;
+}
+
+/** Desktop **/
+@media only screen and (min-width: 1024px){
+
+    h1 {
+        text-align: left;
+    }
+    .accordion {
+        background: url(./images/illustration-woman-online-desktop.svg) bottom 80px left -85px no-repeat, url(./images/bg-pattern-desktop.svg) bottom -140px left -575px no-repeat;
+        background-color: white;
+        display: flex;
+        justify-content: flex-end;
+        max-width: 920px;
+        width: 100%;
+        height: 510px;
+    }
+
+    .accordion::before {
+        content: "";
+        background: url(/images/illustration-box-desktop.svg) no-repeat;
+        width: 191px;
+        height: 184px;
+        position: relative;
+        top: 205px;
+        left: -365px;
+    }
+
+    .accordion-image {
+        display: none;
+    }
+
+    .accordion-content {
+        width: 50%;
+        box-sizing: border-box;
+        margin-block: auto; 
+        padding-inline-start: 15px;
+        padding-inline-end: 80px;
+    }
+
+    #illustration {
+       display: none;
+    }
+
+    #background {
+        display: none;
+    }
+
+    #illustration-box {
+        display: none;
+    }
 }
